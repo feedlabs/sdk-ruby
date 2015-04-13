@@ -1,4 +1,4 @@
-sdk-ruby [![Build Status](https://travis-ci.org/feedlabs/sdk-ruby.png)](https://travis-ci.org/feedlabs/sdk-ruby)
+sdk-ruby
 ========
 Minimalistic [Elasticfeed SDK](http://elasticfeed.io) and cli client for ruby
 
