@@ -40,18 +40,14 @@ Agent is simple wrapper class for listing all accessible resources.
 client = Elasticfeed::Client.new('username', 'api_key')
 agent = Elasticfeed::Agent.new(client)
 
-agent.alerts.each do |alert|
-    alert.ack('now')
+agent.apps.each do |app|
+    puts app.name
 end
 ```
 
 List of resource-listing agent methods:
-- groups
-- hosts
-- clusters
-- snapshots
-- alerts
-- restorejobs
+- orgs
+- apps
 
 ### Resources
 
@@ -59,14 +55,14 @@ You can find lists of resource by using agent as pointed above, or by various re
 Each resource have a find method loading certain resource with provided id (plus corresponding parent ids), e.g.
 ```ruby
 client = new Elasticfeed::Client.new('username', 'api_key')
-host = Elasticfeed::Resource::Host.find(client, 'group_id', 'host_id')
+app = Elasticfeed::Resource::Application.find(client, 'app_id')
 ```
 
 Additionally some resources have additional instance methods to retrieve sub-resources, e.g.
 ```ruby
 client = new Elasticfeed::Client.new('username', 'api_key')
-group = Elasticfeed::Resource::Group.find(client, 'group_id')
-hosts = group.hosts
+org = Elasticfeed::Resource::Organisation.find(client, 'org_id')
+apps = org.applications
 ```
 
 Cli usage
@@ -83,7 +79,7 @@ By default `config_file` points to home directory, but it can be changed to poin
 ```
 username=sysadmin@example.tld
 apikey=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-apiurl=https://api.elasticfeed.io/api/public/v1.0
+apiurl=https://api.elasticfeed.io/v1
 default_org_id=your-org-id
 default_app_id=your-app-id
 ```
@@ -103,12 +99,8 @@ Parameters:
     [ARG] ...                     subcommand arguments
 
 Subcommands:
-    groups                        Groups
-    hosts                         Hosts
-    clusters                      Clusters
-    alerts                        Alerts
-    snapshots                     Snapshots
-    restorejobs                   Restorejobs
+    orgs                          Organisations
+    apps                          Applications
 
 Options:
     -h, --help                    print help
