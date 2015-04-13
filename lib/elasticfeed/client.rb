@@ -65,8 +65,8 @@ module Elasticfeed
         msg = "http 'get' error for url `#{url}`"
         msg = response_json['detail'] unless response_json['detail'].nil?
 
-        raise MMS::AuthError.new(msg, req, response) if response.code == '401'
-        raise MMS::ApiError.new(msg, req, response)
+        raise Elasticfeed::AuthError.new(msg, req, response) if response.code == '401'
+        raise Elasticfeed::ApiError.new(msg, req, response)
       end
 
       response_json
