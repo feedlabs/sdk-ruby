@@ -40,6 +40,14 @@ module Elasticfeed
       app_list
     end
 
+    def feeds
+      feed_list = []
+      apps.each do |app|
+        feed_list.concat app.feeds
+      end
+      feed_list
+    end
+
     # @return [Elasticfeed::Resource::Organisation]
     def find_organisation(id)
       Elasticfeed::Resource::Organisation.find(@client, id)

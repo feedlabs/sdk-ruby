@@ -188,11 +188,11 @@ module Elasticfeed
     class Elasticfeed::CLI::CommandManager < Elasticfeed::CLI::Command
 
       def run(arguments)
-        # begin
+        begin
           super
-        # rescue Exception => e
-        #   abort(e.message.empty? ? 'Unknown error/Interrupt' : e.message)
-        # end
+        rescue Exception => e
+          abort(e.message.empty? ? 'Unknown error/Interrupt' : e.message)
+        end
       end
 
       subcommand 'orgs', 'Orgs ', Elasticfeed::CLI::Command::Organisations

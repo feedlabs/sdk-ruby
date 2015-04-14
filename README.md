@@ -83,6 +83,7 @@ apikey=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 apiurl=https://api.elasticfeed.io/v1
 default_org_id=your-org-id
 default_app_id=your-app-id
+default_feed_id=your-feed-id
 ```
 
 Additionally some options can be modified using cli options.
