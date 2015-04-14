@@ -14,8 +14,9 @@ The Elasticfeed Public API follows the principles of the REST architectural styl
 
 |Resource     |Get All |Get One |Create |Update |Delete |
 |:------------|:------:|:------:|:-----:|:-----:|:-----:|
-|Organisation | +      | +      | +     | +     | +     |
-|Application  | +      | +      | +     | +     | +     |
+|Organisation | +      | +      |       |       |       |
+|Application  | +      | +      |       |       |       |
+|Feed         | +      | +      |       |       |       |
 
 Library usage
 -------------
@@ -101,17 +102,19 @@ Parameters:
 Subcommands:
     orgs                          Organisations
     apps                          Applications
+    feeds                         Feeds
 
 Options:
-    -h, --help                    print help
-    -u, --username <string>       Elasticfeed user
-    -k, --apikey <string>         Elasticfeed api-key
-    -a, --apiurl <string>         Elasticfeed api url. Full url including version: https://api.elasticfeed.io/api/public/v1.0
-    -v, --version                 Version
-    -g, --default-org-id <string> Default Elasticfeed organisation id
-    -c, --default-app-id <string> Default Elasticfeed application id
-    --cfg <string>                Config file path
-    -i, --ignore                  Ignore flag of --group-id and -cluster-id (default: false)
-    -j, --json                    Print JSON output (default: false)
-    -l, --limit <integer>         Limit for result items
+    -h, --help                      print help
+    -u, --username <string>         Elasticfeed user
+    -k, --apikey <string>           Elasticfeed api-key
+    -a, --apiurl <string>           Elasticfeed api url. Full url including version: https://api.elasticfeed.io/api/public/v1.0
+    -v, --version                   Version
+    -g, --default-org-id <string>   Default Elasticfeed organisation id
+    -c, --default-app-id <string>   Default Elasticfeed application id
+    -f, --default-feed-id <string>  Default Elasticfeed feed id
+    --cfg <string>                  Config file path
+    -i, --ignore                    Ignore flag of --group-id and -cluster-id (default: false)
+    -j, --json                      Print JSON output (default: false)
+    -l, --limit <integer>           Limit for result items
 ```
