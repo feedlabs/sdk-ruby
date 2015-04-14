@@ -23,7 +23,7 @@ module Elasticfeed
     # @param [Hash] data
     def from_hash(data)
       unless data.nil?
-        @id = data['id']
+        @id = data['id'] || data['Id']
         _from_hash data
       end
     end

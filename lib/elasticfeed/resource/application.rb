@@ -14,6 +14,18 @@ module Elasticfeed
       Elasticfeed::Resource::Organisation.find(@client, @data['Org']['Id'])
     end
 
+    def feeds
+      if @feeds.empty?
+        @client.get('/application/' + @id + '/feed').each do |feed|
+          c = Elasticfeed::Resource::Feed.new
+          c.set_client(@client)
+          c.set_data(feed)
+          @feeds.push c
+        end
+      end
+      @feeds
+    end
+
     def table_row
       [org.name, @name]
     end

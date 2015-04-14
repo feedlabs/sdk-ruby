@@ -36,6 +36,9 @@ module Elasticfeed
         default_app_id: proc {
           nil
         },
+        default_feed_id: proc {
+          nil
+        },
         config_path: proc {
           Dir.home + '/.elasticfeed-cli'
         }

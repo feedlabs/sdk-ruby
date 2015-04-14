@@ -38,6 +38,10 @@ module Elasticfeed
         @config.default_app_id = c
       end
 
+      option ['-f', '--default-feed-id'], '<string>', 'Default Elasticfeed feed id' do |f|
+        @config.default_feed_id = f
+      end
+
       option ['--cfg'], '<string>', 'Config file path' do |p|
         @config.config_path = p
         parse_user_home_config
@@ -122,9 +126,10 @@ module Elasticfeed
       def print_tips
         puts 'Default org: ' + @config.default_org_id unless @config.default_org_id.nil?
         puts 'Default app: ' + @config.default_app_id unless @config.default_app_id.nil?
+        puts 'Default feed: ' + @config.default_feed_id unless @config.default_feed_id.nil?
 
         if !@config.default_org_id.nil? or !@config.default_app_id.nil?
-          puts "Add flag --ignore or update --default-org-id, --default-app-id or update your `#{@config.config_path}` to see all resources"
+          puts "Add flag --ignore or update --default-org-id, --default-app-id, --default-feed-id or update your `#{@config.config_path}` to see all resources"
         end
       end
 
@@ -168,18 +173,31 @@ module Elasticfeed
 
     end
 
+    class Elasticfeed::CLI::Command::Feeds < Elasticfeed::CLI::Command
+
+      subcommand 'list', 'Feeds list' do
+
+        def execute
+          feed_list = applications.collect! { |application| application.feeds }.flatten
+          print(Elasticfeed::Resource::Feed.table_header, feed_list)
+        end
+      end
+
+    end
+
     class Elasticfeed::CLI::CommandManager < Elasticfeed::CLI::Command
 
       def run(arguments)
-        begin
+        # begin
           super
-        rescue Exception => e
-          abort(e.message.empty? ? 'Unknown error/Interrupt' : e.message)
-        end
+        # rescue Exception => e
+        #   abort(e.message.empty? ? 'Unknown error/Interrupt' : e.message)
+        # end
       end
 
       subcommand 'orgs', 'Orgs ', Elasticfeed::CLI::Command::Organisations
       subcommand 'apps', 'Apps', Elasticfeed::CLI::Command::Applications
+      subcommand 'feeds', 'Feeds', Elasticfeed::CLI::Command::Feeds
 
     end
 
