@@ -26,6 +26,10 @@ module Elasticfeed
       @feeds
     end
 
+    def feed(id)
+      Elasticfeed::Resource::Feed.find(@client, @id, id)
+    end
+
     def table_row
       [org.name, @name]
     end

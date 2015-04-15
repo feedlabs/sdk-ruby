@@ -92,6 +92,14 @@ module Elasticfeed
         id.nil? ? agent.apps : [agent.find_application(id)]
       end
 
+      def feeds
+        id = ignore? ? nil : @config.default_feed_id
+
+        applications.collect! { |application|
+          id.nil? ? application.feeds : application.feed(id)
+        }.flatten
+      end
+
       # @param [String] heading
       # @param [Elasticfeed<Elasticfeed::Resource>]
       def print(heading, resource_list)
@@ -178,8 +186,19 @@ module Elasticfeed
       subcommand 'list', 'Feeds list' do
 
         def execute
-          feed_list = applications.collect! { |application| application.feeds }.flatten
-          print(Elasticfeed::Resource::Feed.table_header, feed_list)
+          print(Elasticfeed::Resource::Feed.table_header, feeds)
+        end
+      end
+
+    end
+
+    class Elasticfeed::CLI::Command::Entries < Elasticfeed::CLI::Command
+
+      subcommand 'list', 'Entries list' do
+
+        def execute
+          entry_list = feeds.collect! { |feed| feed.entries }.flatten
+          print(Elasticfeed::Resource::Entry.table_header, entry_list)
         end
       end
 
@@ -198,6 +217,7 @@ module Elasticfeed
       subcommand 'orgs', 'Orgs ', Elasticfeed::CLI::Command::Organisations
       subcommand 'apps', 'Apps', Elasticfeed::CLI::Command::Applications
       subcommand 'feeds', 'Feeds', Elasticfeed::CLI::Command::Feeds
+      subcommand 'entries', 'Entries', Elasticfeed::CLI::Command::Entries
 
     end
 

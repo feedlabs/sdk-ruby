@@ -20,6 +20,7 @@ module Elasticfeed
   require 'elasticfeed/resource/organisation'
   require 'elasticfeed/resource/application'
   require 'elasticfeed/resource/feed'
+  require 'elasticfeed/resource/entry'
 
   require 'elasticfeed/cli'
 end
