@@ -30,12 +30,12 @@ module Elasticfeed
         exit
       end
 
-      option ['-g', '--default-org-id'], '<string>', 'Default Elasticfeed organisation id' do |g|
-        @config.default_org_id = g
+      option ['-o', '--default-org-id'], '<string>', 'Default Elasticfeed organisation id' do |o|
+        @config.default_org_id = o
       end
 
-      option ['-c', '--default-app-id'], '<string>', 'Default Elasticfeed application id' do |c|
-        @config.default_app_id = c
+      option ['-p', '--default-app-id'], '<string>', 'Default Elasticfeed application id' do |p|
+        @config.default_app_id = p
       end
 
       option ['-f', '--default-feed-id'], '<string>', 'Default Elasticfeed feed id' do |f|
@@ -47,7 +47,7 @@ module Elasticfeed
         parse_user_home_config
       end
 
-      option ['-i', '--ignore'], :flag, 'Ignore flag of --org-id and -app-id', :default => false
+      option ['-i', '--ignore'], :flag, 'Ignore flag of --default-xxx-id', :default => false
 
       option ['-j', '--json'], :flag, 'Print JSON output', :default => false
 
