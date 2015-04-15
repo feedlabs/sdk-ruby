@@ -56,6 +56,14 @@ module Elasticfeed
       entry_list
     end
 
+    def workflows
+      workflow_list = []
+      feeds.each do |feed|
+        workflow_list.concat feed.workflows
+      end
+      workflow_list
+    end
+
     # @return [Elasticfeed::Resource::Organisation]
     def find_organisation(id)
       Elasticfeed::Resource::Organisation.find(@client, id)

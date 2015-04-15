@@ -18,6 +18,7 @@ The Elasticfeed Public API follows the principles of the REST architectural styl
 |Application  | +      | +      |       |       |       |
 |Feed         | +      | +      |       |       |       |
 |Entry        | +      | +      |       |       |       |
+|Workflow     | +      | +      |       |       |       |
 
 Library usage
 -------------
@@ -52,6 +53,7 @@ List of resource-listing agent methods:
 - apps
 - feeds
 - entries
+- workflows
 
 ### Resources
 
@@ -108,6 +110,7 @@ Subcommands:
     apps                          Applications
     feeds                         Feeds
     entries                       Entries
+    workflows                     Workflows
 
 Options:
     -h, --help                      print help
