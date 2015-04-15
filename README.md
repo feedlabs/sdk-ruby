@@ -106,11 +106,11 @@ Parameters:
     [ARG] ...                     subcommand arguments
 
 Subcommands:
-    orgs                          Organisations
-    apps                          Applications
-    feeds                         Feeds
-    entries                       Entries
-    workflows                     Workflows
+    org                          Organisations
+    app                          Applications
+    feed                         Feeds
+    entry                        Entries
+    workflow                     Workflows
 
 Options:
     -h, --help                      print help
