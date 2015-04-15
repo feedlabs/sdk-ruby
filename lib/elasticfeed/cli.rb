@@ -172,7 +172,7 @@ module Elasticfeed
 
     class Elasticfeed::CLI::Command::Applications < Elasticfeed::CLI::Command
 
-      subcommand 'list', 'Applications list' do
+      subcommand 'list', 'Application list' do
 
         def execute
           print(Elasticfeed::Resource::Application.table_header, applications)
@@ -183,7 +183,7 @@ module Elasticfeed
 
     class Elasticfeed::CLI::Command::Feeds < Elasticfeed::CLI::Command
 
-      subcommand 'list', 'Feeds list' do
+      subcommand 'list', 'Feed list' do
 
         def execute
           print(Elasticfeed::Resource::Feed.table_header, feeds)
@@ -194,7 +194,7 @@ module Elasticfeed
 
     class Elasticfeed::CLI::Command::Entries < Elasticfeed::CLI::Command
 
-      subcommand 'list', 'Entries list' do
+      subcommand 'list', 'Entry list' do
 
         def execute
           entry_list = feeds.collect! { |feed| feed.entries }.flatten
@@ -206,7 +206,7 @@ module Elasticfeed
 
     class Elasticfeed::CLI::Command::Workflows < Elasticfeed::CLI::Command
 
-      subcommand 'list', 'Workflows list' do
+      subcommand 'list', 'Workflow list' do
 
         def execute
           workflow_list = feeds.collect! { |feed| feed.workflows }.flatten
@@ -226,11 +226,11 @@ module Elasticfeed
         end
       end
 
-      subcommand 'orgs', 'Orgs ', Elasticfeed::CLI::Command::Organisations
-      subcommand 'apps', 'Apps', Elasticfeed::CLI::Command::Applications
-      subcommand 'feeds', 'Feeds', Elasticfeed::CLI::Command::Feeds
-      subcommand 'entries', 'Entries', Elasticfeed::CLI::Command::Entries
-      subcommand 'workflows', 'Workflows', Elasticfeed::CLI::Command::Workflows
+      subcommand 'org', 'Orgs ', Elasticfeed::CLI::Command::Organisations
+      subcommand 'app', 'Apps', Elasticfeed::CLI::Command::Applications
+      subcommand 'feed', 'Feeds', Elasticfeed::CLI::Command::Feeds
+      subcommand 'entry', 'Entries', Elasticfeed::CLI::Command::Entries
+      subcommand 'workflow', 'Workflows', Elasticfeed::CLI::Command::Workflows
 
     end
 
