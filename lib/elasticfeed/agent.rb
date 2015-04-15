@@ -48,6 +48,14 @@ module Elasticfeed
       feed_list
     end
 
+    def entries
+      entry_list = []
+      feeds.each do |feed|
+        entry_list.concat feed.entries
+      end
+      entry_list
+    end
+
     # @return [Elasticfeed::Resource::Organisation]
     def find_organisation(id)
       Elasticfeed::Resource::Organisation.find(@client, id)
