@@ -204,6 +204,18 @@ module Elasticfeed
 
     end
 
+    class Elasticfeed::CLI::Command::Workflows < Elasticfeed::CLI::Command
+
+      subcommand 'list', 'Workflows list' do
+
+        def execute
+          workflow_list = feeds.collect! { |feed| feed.workflows }.flatten
+          print(Elasticfeed::Resource::Workflow.table_header, workflow_list)
+        end
+      end
+
+    end
+
     class Elasticfeed::CLI::CommandManager < Elasticfeed::CLI::Command
 
       def run(arguments)
@@ -218,6 +230,7 @@ module Elasticfeed
       subcommand 'apps', 'Apps', Elasticfeed::CLI::Command::Applications
       subcommand 'feeds', 'Feeds', Elasticfeed::CLI::Command::Feeds
       subcommand 'entries', 'Entries', Elasticfeed::CLI::Command::Entries
+      subcommand 'workflows', 'Workflows', Elasticfeed::CLI::Command::Workflows
 
     end
 

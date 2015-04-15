@@ -21,6 +21,7 @@ module Elasticfeed
   require 'elasticfeed/resource/application'
   require 'elasticfeed/resource/feed'
   require 'elasticfeed/resource/entry'
+  require 'elasticfeed/resource/workflow'
 
   require 'elasticfeed/cli'
 end

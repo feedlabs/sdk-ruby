@@ -4,12 +4,15 @@ module Elasticfeed
 
     attr_accessor :name
     attr_accessor :entries_count
+    attr_accessor :workflows_count
     attr_accessor :feed_data
 
     attr_accessor :entries
+    attr_accessor :workflows
 
     def initialize
       @entries = []
+      @workflows = []
     end
 
     def app
@@ -28,8 +31,20 @@ module Elasticfeed
       @entries
     end
 
+    def workflows
+      if @workflows.empty?
+        @client.get('/application/' + app.id + '/feed/' + @id + '/workflow').each do |workflow|
+          c = Elasticfeed::Resource::Workflow.new
+          c.set_client(@client)
+          c.set_data(workflow)
+          @workflows.push c
+        end
+      end
+      @workflows
+    end
+
     def table_row
-      [app.org.name, app.name, @name, @entries_count, @feed_data]
+      [app.org.name, app.name, @name, @entries_count, @workflows_count, @feed_data]
     end
 
     def table_section
@@ -37,7 +52,7 @@ module Elasticfeed
     end
 
     def self.table_header
-      ['Org', 'App', 'Feed', 'Entries Count', 'Data']
+      ['Org', 'App', 'Feed', 'Entries', 'Workflows', 'Data']
     end
 
     def self._find(client, application_id, id)
@@ -49,6 +64,7 @@ module Elasticfeed
     def _from_hash(data)
       @name = data['name'].nil? ? data['Id'] : data['name']
       @entries_count = data['Entries']
+      @workflows_count = data['Workflows']
       @feed_data = data['Data']
     end
 
