@@ -118,11 +118,11 @@ Options:
     -k, --apikey <string>           Elasticfeed api-key
     -a, --apiurl <string>           Elasticfeed api url. Full url including version: https://api.elasticfeed.io/api/public/v1.0
     -v, --version                   Version
-    -g, --default-org-id <string>   Default Elasticfeed organisation id
-    -c, --default-app-id <string>   Default Elasticfeed application id
+    -o, --default-org-id <string>   Default Elasticfeed organisation id
+    -p, --default-app-id <string>   Default Elasticfeed application id
     -f, --default-feed-id <string>  Default Elasticfeed feed id
     --cfg <string>                  Config file path
-    -i, --ignore                    Ignore flag of --group-id and -cluster-id (default: false)
+    -i, --ignore                    Ignore flag of --default-xxx-id (default: false)
     -j, --json                      Print JSON output (default: false)
     -l, --limit <integer>           Limit for result items
 ```
