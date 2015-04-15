@@ -104,6 +104,7 @@ Subcommands:
     orgs                          Organisations
     apps                          Applications
     feeds                         Feeds
+    entries                       Entries
 
 Options:
     -h, --help                      print help
