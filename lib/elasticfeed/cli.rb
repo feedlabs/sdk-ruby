@@ -190,7 +190,7 @@ module Elasticfeed
         end
       end
 
-      subcommand 'empty', 'Remove all entries' do
+      subcommand 'empty', 'Clear all entries from UI' do
         def execute
           feeds.each do |feed|
             feed.empty
