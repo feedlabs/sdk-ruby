@@ -17,7 +17,7 @@ The Elasticfeed Public API follows the principles of the REST architectural styl
 |Organisation | +      | +      |       |       |       |
 |Application  | +      | +      |       |       |       |
 |Feed         | +      | +      |       |       |       |
-|Entry        | +      | +      |       |       |       |
+|Entry        | +      | +      | +     |       | +     |
 |Workflow     | +      | +      |       |       |       |
 
 Library usage
