@@ -29,6 +29,10 @@ module Elasticfeed
       client.post('/application/' + application_id + '/feed/' + feed_id + '/entry', data)
     end
 
+    def delete
+      @client.delete('/application/' + feed.app.id + '/feed/' + feed.id + '/entry/' + @id)
+    end
+
     private
 
     def _from_hash(data)

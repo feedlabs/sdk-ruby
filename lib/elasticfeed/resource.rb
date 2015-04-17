@@ -85,5 +85,6 @@ module Elasticfeed
       resource.set_data(data)
       resource
     end
+
   end
 end

@@ -28,6 +28,12 @@ module Elasticfeed
       _request(Net::HTTP::Post, @url + path, @username, @apikey, data)
     end
 
+    # @param [String] path
+    # @return [Hash]
+    def delete(path)
+      _request(Net::HTTP::Delete, @url + path, @username, @apikey)
+    end
+
     private
 
     # @param [Net::HTTPRequest] http_method
@@ -59,6 +65,7 @@ module Elasticfeed
       req.body = data.to_json
 
       response = http.request req
+
       response_json = JSON.parse response.body
 
       unless response.code == '200' or response_json['error'].nil?

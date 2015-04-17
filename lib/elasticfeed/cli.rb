@@ -217,6 +217,17 @@ module Elasticfeed
         end
       end
 
+      subcommand 'new-workflow', 'New feed workflow' do
+
+        parameter '[data]', 'Data as <string>', :default => ''
+
+        def execute
+          feeds.each do |feed|
+            feed.new_workflow(data)
+          end
+        end
+      end
+
     end
 
     class Elasticfeed::CLI::Command::Entries < Elasticfeed::CLI::Command
@@ -226,6 +237,22 @@ module Elasticfeed
         def execute
           entry_list = feeds.collect! { |feed| feed.entries }.flatten
           print(Elasticfeed::Resource::Entry.table_header, entry_list)
+        end
+      end
+
+      subcommand 'delete', 'Entry list' do
+
+        parameter '[id]', 'Entry Id'
+
+        def execute
+          entry_list = feeds.collect! { |feed| feed.entries }.flatten
+          entry = entry_list.select! {| entry| entry.id == id }.first
+          if entry.nil?
+            puts "Cannot load entry id `#{id}` "
+          else
+            entry.delete
+            puts "Remove of entry id `#{id}` has finished successfully"
+          end
         end
       end
 
