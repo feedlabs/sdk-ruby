@@ -31,6 +31,13 @@ module Elasticfeed
       @entries
     end
 
+    def new_entry(data)
+      data = {
+        :Data => data
+      }
+      Elasticfeed::Resource::Entry.create(@client, @data['Application']['Id'], @id, data)
+    end
+
     def workflows
       if @workflows.empty?
         @client.get('/application/' + app.id + '/feed/' + @id + '/workflow').each do |workflow|
@@ -41,6 +48,14 @@ module Elasticfeed
         end
       end
       @workflows
+    end
+
+    def reload
+      @client.get('/application/' + app.id + '/feed/' + @id + '/reload')
+    end
+
+    def empty
+      @client.get('/application/' + app.id + '/feed/' + @id + '/empty')
     end
 
     def table_row

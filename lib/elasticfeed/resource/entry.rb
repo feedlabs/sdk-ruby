@@ -25,6 +25,10 @@ module Elasticfeed
       client.get('/application/' + application_id + '/feed/' + feed_id + '/entry/' + id)
     end
 
+    def self._create(client, application_id, feed_id, data)
+      client.post('/application/' + application_id + '/feed/' + feed_id + '/entry', data)
+    end
+
     private
 
     def _from_hash(data)

@@ -190,6 +190,33 @@ module Elasticfeed
         end
       end
 
+      subcommand 'empty', 'Remove all entries' do
+        def execute
+          feeds.each do |feed|
+            feed.empty
+          end
+        end
+      end
+
+      subcommand 'reload', 'Reload all active UI' do
+        def execute
+          feeds.each do |feed|
+            feed.reload
+          end
+        end
+      end
+
+      subcommand 'new-entry', 'New feed entry' do
+
+        parameter '[data]', 'Data as <string>', :default => ''
+
+        def execute
+          feeds.each do |feed|
+            feed.new_entry(data)
+          end
+        end
+      end
+
     end
 
     class Elasticfeed::CLI::Command::Entries < Elasticfeed::CLI::Command

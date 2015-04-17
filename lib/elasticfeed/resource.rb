@@ -76,5 +76,14 @@ module Elasticfeed
       resource.set_data(data)
       resource
     end
+
+    def self.create(client, *arguments)
+      data = self._create(client, *arguments)
+
+      resource = self.new
+      resource.set_client(client)
+      resource.set_data(data)
+      resource
+    end
   end
 end
