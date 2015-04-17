@@ -246,7 +246,7 @@ module Elasticfeed
 
         def execute
           entry_list = feeds.collect! { |feed| feed.entries }.flatten
-          entry = entry_list.select! {| entry| entry.id == id }.first
+          entry = entry_list.select! { |entry| entry.id == id }.first
           if entry.nil?
             puts "Cannot load entry id `#{id}` "
           else
@@ -265,6 +265,20 @@ module Elasticfeed
         def execute
           workflow_list = feeds.collect! { |feed| feed.workflows }.flatten
           print(Elasticfeed::Resource::Workflow.table_header, workflow_list)
+        end
+      end
+
+      subcommand 'upload', 'Upload Workflowfile' do
+
+        parameter '[id]', 'Workflow Id'
+        parameter '[file]', 'Workflowfile path'
+
+        def execute
+          workflow_list = feeds.collect! { |feed| feed.workflows }.flatten
+          workflow = workflow_list.select! { |workflow| workflow.id == id }.first
+
+          data = File.read(file)
+          workflow.upload(data)
         end
       end
 

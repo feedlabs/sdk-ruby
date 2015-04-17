@@ -29,6 +29,13 @@ module Elasticfeed
       client.post('/application/' + application_id + '/feed/' + feed_id + '/workflow', data)
     end
 
+    def upload(data)
+      data = {
+        :Data => data
+      }
+      @client.put('/application/' + feed.app.id + '/feed/' + feed.id + '/workflow/' + @id, data)
+    end
+
     private
 
     def _from_hash(data)

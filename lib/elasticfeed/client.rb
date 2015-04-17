@@ -29,6 +29,13 @@ module Elasticfeed
     end
 
     # @param [String] path
+    # @param [Hash] data
+    # @return [Hash]
+    def put(path, data)
+      _request(Net::HTTP::Put, @url + path, @username, @apikey, data)
+    end
+
+    # @param [String] path
     # @return [Hash]
     def delete(path)
       _request(Net::HTTP::Delete, @url + path, @username, @apikey)
