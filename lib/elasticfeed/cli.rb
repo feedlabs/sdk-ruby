@@ -240,7 +240,7 @@ module Elasticfeed
         end
       end
 
-      subcommand 'delete', 'Entry list' do
+      subcommand 'delete', 'Delete entry' do
 
         parameter '[id]', 'Entry Id'
 
@@ -265,6 +265,22 @@ module Elasticfeed
         def execute
           workflow_list = feeds.collect! { |feed| feed.workflows }.flatten
           print(Elasticfeed::Resource::Workflow.table_header, workflow_list)
+        end
+      end
+
+      subcommand 'delete', 'Delete workflow' do
+
+        parameter '[id]', 'Workflow Id'
+
+        def execute
+          workflow_list = feeds.collect! { |feed| feed.workflows }.flatten
+          workflow = workflow_list.select! { |entry| entry.id == id }.first
+          if workflow.nil?
+            puts "Cannot load workflow id `#{id}` "
+          else
+            workflow.delete
+            puts "Remove of workflow id `#{id}` has finished successfully"
+          end
         end
       end
 
