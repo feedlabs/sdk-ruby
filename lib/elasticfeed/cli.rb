@@ -179,6 +179,21 @@ module Elasticfeed
         end
       end
 
+      subcommand 'delete', 'Delete plugin' do
+
+        parameter '[id]', 'Plugin Id'
+
+        def execute
+          plugin = agent.plugins.select! { |plugin| plugin.id == id }.first
+          if plugin.nil?
+            puts "Cannot load plugin id `#{id}` "
+          else
+            plugin.delete
+            puts "Remove of plugin id `#{id}` has finished successfully"
+          end
+        end
+      end
+
     end
 
     class Elasticfeed::CLI::Command::Applications < Elasticfeed::CLI::Command
