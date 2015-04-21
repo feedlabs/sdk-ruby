@@ -2,15 +2,18 @@ module Elasticfeed
 
   class Resource::Workflow < Resource
 
-    attr_accessor :name
-    attr_accessor :workflow_data
+    attr_reader :name
+    attr_reader :workflow_data
+    attr_reader :defualt
+    attr_reader :status
+    attr_reader :errors
 
     def feed
-      Elasticfeed::Resource::Feed.find(@client, @data['Feed']['Application']['Id'], @data['Feed']['Id'])
+      Elasticfeed::Resource::Feed.find(@client, @data['applicationId'], @data['feedId'])
     end
 
     def table_row
-      [feed.app.org.name, feed.app.name, feed.name, @name, @workflow_data]
+      [feed.app.org.name, feed.app.name, feed.name, @name, @default, @status, @errors, @workflow_data]
     end
 
     def table_section
@@ -18,7 +21,7 @@ module Elasticfeed
     end
 
     def self.table_header
-      ['Org', 'App', 'Feed', 'Workflow', 'Data']
+      ['Org', 'App', 'Feed', 'Workflow', 'Default', 'Status', 'Errors', 'Data']
     end
 
     def self._find(client, application_id, feed_id, id)
@@ -43,8 +46,11 @@ module Elasticfeed
     private
 
     def _from_hash(data)
-      @name = data['name'].nil? ? data['Id'] : data['name']
-      @workflow_data = data['Data']
+      @name = data['name'].nil? ? data['id'] : data['name']
+      @workflow_data = data['data']
+      @default = data['default']
+      @status = data['status']
+      @errors = data['errors']
     end
 
     def _to_hash

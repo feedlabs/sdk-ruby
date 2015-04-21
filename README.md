@@ -14,15 +14,15 @@ The Elasticfeed Public API follows the principles of the REST architectural styl
 
 |Resource     |Get All |Get One |Create |Update |Delete | - Provider- |
 |:------------|:------:|:------:|:-----:|:-----:|:-----:|:-----------:|
-|Organisation | +      | +      |       |       |       | store       |
 |Application  | +      | +      |       |       |       | store       |
 |Feed         | +      | +      |       |       |       | store       |
 |Entry        | +      | +      | +     |       | +     | store       |
 |Workflow     | +      | +      | +     | +     | +     | store       |
 |Plugin       | +      | +      |       |       | +     | system      |
+|Viewer       |        |        |       |       |       | store       |
+|Organisation | +      | +      |       |       |       | store       |
 |Admin        |        |        |       |       |       | store       |
 |Token        |        |        |       |       |       | store       |
-|Viewer       |        |        |       |       |       | store       |
 
 Library usage
 -------------
