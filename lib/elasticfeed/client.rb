@@ -31,8 +31,8 @@ module Elasticfeed
     # @param [String] path
     # @param [Hash] data
     # @return [Hash]
-    def put(path, data)
-      _request(Net::HTTP::Put, @url + path, @username, @apikey, data)
+    def put(path, data, binary = false)
+      _request(Net::HTTP::Put, @url + path, @username, @apikey, data, binary)
     end
 
     # @param [String] path
@@ -49,7 +49,9 @@ module Elasticfeed
     # @param [String] password
     # @param [Hash] data
     # @return [Hash]
-    def _request(http_method, path, username, password, data = nil)
+    def _request(http_method, path, username, password, data = nil, binary = false)
+
+      content_type = binary == false ? 'application/json' : 'application/octet-stream'
 
       digest_auth = Net::HTTP::DigestAuth.new
       digest_auth.next_nonce
@@ -61,15 +63,15 @@ module Elasticfeed
       http = Net::HTTP.new uri.host, uri.port
       http.use_ssl = (uri.scheme == 'https')
 
-      req = http_method.new(uri.request_uri, {'Content-Type' => 'application/json'})
+      req = http_method.new(uri.request_uri, {'Content-Type' => content_type})
       res = http.request req
 
       raise 'Invalid method' unless http_method.kind_of? Class and http_method < Net::HTTPRequest
-      req = http_method.new(uri.request_uri, {'Content-Type' => 'application/json'})
+      req = http_method.new(uri.request_uri, {'Content-Type' => content_type})
       method_name = http_method.name.split('::').last.upcase
       auth = digest_auth.auth_header(uri, res['WWW-Authenticate'], method_name)
       req.add_field 'Authorization', auth
-      req.body = data.to_json
+      req.body = binary == false ? data.to_json : data
 
       response = http.request req
 

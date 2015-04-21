@@ -179,7 +179,7 @@ module Elasticfeed
         end
       end
 
-      subcommand 'delete', 'Delete plugin' do
+      subcommand 'uninstall', 'Uninstall and delete plugin from engine' do
 
         parameter 'id', 'Plugin Id'
 
@@ -191,6 +191,41 @@ module Elasticfeed
             plugin.delete
             puts "Remove of plugin id `#{id}` has finished successfully"
           end
+        end
+      end
+
+      subcommand 'install', 'Upload and install into engine' do
+
+        parameter 'id', 'Plugin Id'
+        parameter 'path', 'Plugin location path'
+
+        def execute
+          plugin = agent.plugins.select! { |plugin| plugin.id == id }.first
+          if plugin.nil?
+            puts "Cannot load plugin id `#{id}` "
+          else
+            data = File.read(path)
+            plugin.upload_binary(data)
+            puts "Upload of plugin id `#{id}` has finished successfully"
+          end
+        end
+      end
+
+      subcommand 'push-community', 'Push plugin to Public Plugins Manager' do
+
+        parameter 'path', 'Source path of binary file'
+
+        def execute
+          puts 'Not implemented yet!'
+        end
+      end
+
+      subcommand 'fetch-community', 'Fetch plugin from Public Plugins Manager' do
+
+        parameter 'path', 'Destination path for plugin'
+
+        def execute
+          puts 'Not implemented yet!'
         end
       end
 
