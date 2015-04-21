@@ -27,6 +27,19 @@ module Elasticfeed
       org_list
     end
 
+    # @return [Array<Elasticfeed::Resource::Plugin>]
+    def plugins
+      plugin_list = []
+      client.get('/system/plugin').each do |org|
+        g = Elasticfeed::Resource::Plugin.new
+        g.set_client(client)
+        g.set_data(org)
+
+        plugin_list.push g
+      end
+      plugin_list
+    end
+
     # @return [Array<Elasticfeed::Resource::Application>]
     def apps
       app_list = []
@@ -67,6 +80,11 @@ module Elasticfeed
     # @return [Elasticfeed::Resource::Organisation]
     def find_organisation(id)
       Elasticfeed::Resource::Organisation.find(@client, id)
+    end
+
+    # @return [Elasticfeed::Resource::Plugin]
+    def find_plugin(id)
+      Elasticfeed::Resource::Plugin.find(@client, id)
     end
 
     # @return [Elasticfeed::Resource::Application]

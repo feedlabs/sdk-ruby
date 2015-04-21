@@ -170,6 +170,17 @@ module Elasticfeed
 
     end
 
+    class Elasticfeed::CLI::Command::Plugins < Elasticfeed::CLI::Command
+
+      subcommand 'list', 'Plugin list' do
+
+        def execute
+          print(Elasticfeed::Resource::Plugin.table_header, agent.plugins)
+        end
+      end
+
+    end
+
     class Elasticfeed::CLI::Command::Applications < Elasticfeed::CLI::Command
 
       subcommand 'list', 'Application list' do
@@ -315,6 +326,7 @@ module Elasticfeed
       subcommand 'feed', 'Feeds', Elasticfeed::CLI::Command::Feeds
       subcommand 'entry', 'Entries', Elasticfeed::CLI::Command::Entries
       subcommand 'workflow', 'Workflows', Elasticfeed::CLI::Command::Workflows
+      subcommand 'plugin', 'Plugins', Elasticfeed::CLI::Command::Plugins
 
     end
 
