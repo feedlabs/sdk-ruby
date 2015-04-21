@@ -3,10 +3,10 @@ module Elasticfeed
   class Resource::Workflow < Resource
 
     attr_reader :name
-    attr_reader :workflow_data
     attr_reader :defualt
     attr_reader :status
     attr_reader :errors
+    attr_accessor :workflow_data
 
     def feed
       Elasticfeed::Resource::Feed.find(@client, @data['applicationId'], @data['feedId'])

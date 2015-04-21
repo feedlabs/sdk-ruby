@@ -181,7 +181,7 @@ module Elasticfeed
 
       subcommand 'delete', 'Delete plugin' do
 
-        parameter '[id]', 'Plugin Id'
+        parameter 'id', 'Plugin Id'
 
         def execute
           plugin = agent.plugins.select! { |plugin| plugin.id == id }.first
@@ -268,7 +268,7 @@ module Elasticfeed
 
       subcommand 'delete', 'Delete entry' do
 
-        parameter '[id]', 'Entry Id'
+        parameter 'id', 'Entry Id'
 
         def execute
           entry_list = feeds.collect! { |feed| feed.entries }.flatten
@@ -296,7 +296,7 @@ module Elasticfeed
 
       subcommand 'delete', 'Delete workflow' do
 
-        parameter '[id]', 'Workflow Id'
+        parameter 'id', 'Workflow Id'
 
         def execute
           workflow_list = feeds.collect! { |feed| feed.workflows }.flatten
@@ -310,17 +310,39 @@ module Elasticfeed
         end
       end
 
-      subcommand 'upload', 'Upload Workflowfile' do
+      subcommand 'push', 'Push from file path' do
 
-        parameter '[id]', 'Workflow Id'
-        parameter '[file]', 'Workflowfile path'
+        parameter 'id', 'Workflow Id'
+        parameter 'path', 'Workflowfile path'
 
         def execute
           workflow_list = feeds.collect! { |feed| feed.workflows }.flatten
           workflow = workflow_list.select! { |workflow| workflow.id == id }.first
 
-          data = File.read(file)
-          workflow.upload(data)
+          if workflow.nil?
+            puts "Cannot load workflow id `#{id}` "
+          else
+            data = File.read(path)
+            workflow.upload(data)
+          end
+        end
+      end
+
+      subcommand 'fetch', 'Fetch and store at file path' do
+
+        parameter 'id', 'Workflow Id'
+        parameter 'path', 'Workflowfile path'
+
+        def execute
+          workflow_list = feeds.collect! { |feed| feed.workflows }.flatten
+          workflow = workflow_list.select! { |workflow| workflow.id == id }.first
+
+          if workflow.nil?
+            puts "Cannot load workflow id `#{id}` "
+          else
+            data = workflow.workflow_data
+            File.write(path, data)
+          end
         end
       end
 
