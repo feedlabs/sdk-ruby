@@ -116,6 +116,7 @@ Subcommands:
     feed                         Feeds
     entry                        Entries
     workflow                     Workflows
+    plugin                       Plugins
 
 Options:
     -h, --help                      print help
