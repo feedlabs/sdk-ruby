@@ -58,6 +58,7 @@ List of resource-listing agent methods:
 - feeds
 - entries
 - workflows
+- plugins
 
 ### Resources
 
