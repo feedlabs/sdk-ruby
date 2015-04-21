@@ -12,17 +12,17 @@ API coverage
 ------------
 The Elasticfeed Public API follows the principles of the REST architectural style to expose a number of internal resources which enable programmatic access to [Elasticfeed’s features](http://elasticfeed.io/help/reference/api/). Current implementation support only a few of API features.
 
-|Resource     |Get All |Get One |Create |Update |Delete |
-|:------------|:------:|:------:|:-----:|:-----:|:-----:|
-|Organisation | +      | +      |       |       |       |
-|Application  | +      | +      |       |       |       |
-|Feed         | +      | +      |       |       |       |
-|Entry        | +      | +      | +     |       | +     |
-|Workflow     | +      | +      | +     | +     | +     |
-|Plugin       | +      | +      |       |       |       |
-|Admin        |        |        |       |       |       |
-|Token        |        |        |       |       |       |
-|Viewer       |        |        |       |       |       |
+|Resource     |Get All |Get One |Create |Update |Delete | - Provider- |
+|:------------|:------:|:------:|:-----:|:-----:|:-----:|:-----------:|
+|Organisation | +      | +      |       |       |       | store       |
+|Application  | +      | +      |       |       |       | store       |
+|Feed         | +      | +      |       |       |       | store       |
+|Entry        | +      | +      | +     |       | +     | store       |
+|Workflow     | +      | +      | +     | +     | +     | store       |
+|Plugin       | +      | +      |       |       |       | system      |
+|Admin        |        |        |       |       |       | store       |
+|Token        |        |        |       |       |       | store       |
+|Viewer       |        |        |       |       |       | store       |
 
 Library usage
 -------------
