@@ -1,5 +1,8 @@
 sdk-ruby
 ========
+
+(in development, part of `elasticfeed` ICSE, Intelligent Content Streaming Engine)
+
 Minimalistic [Elasticfeed SDK](http://elasticfeed.io) and cli client for ruby
 
 Installation
