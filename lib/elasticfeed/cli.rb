@@ -229,6 +229,20 @@ module Elasticfeed
         end
       end
 
+      subcommand 'dev-deploy', 'Builds from source code and uploads to the engine' do
+
+        parameter 'path', 'Source code path'
+
+        def execute
+
+          # should run go build main.go > some_bin_path
+          # should get some_bin_path and upload plugin to the engine
+          # should run plugin and get stats
+
+          puts 'Not implemented yet!'
+        end
+      end
+
     end
 
     class Elasticfeed::CLI::Command::Applications < Elasticfeed::CLI::Command
