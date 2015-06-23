@@ -8,9 +8,10 @@ module Elasticfeed
     attr_reader :license
     attr_reader :status
     attr_reader :errors
+    attr_reader :runtime
 
     def table_row
-      [@name, @id, @group, @version, @license, @status, @errors]
+      [@name, @id, @group, @version, @license, @status, @errors, @runtime['workflowCurrent'], @runtime['workflowCrashed']]
     end
 
     def table_section
@@ -18,7 +19,7 @@ module Elasticfeed
     end
 
     def self.table_header
-      ['Name', 'PluginId', 'Group', 'Version', 'License', 'Status', 'Errors']
+      ['Name', 'PluginId', 'Group', 'Version', 'License', 'Status', 'Errors', 'Workflow in use', 'Workflow crashed']
     end
 
     def self._find(client, id)
@@ -42,6 +43,7 @@ module Elasticfeed
       @license = data['license']
       @status = data['status']
       @errors = data['errors']
+      @runtime = data['runtime']
     end
 
     def _to_hash
